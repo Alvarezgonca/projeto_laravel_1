@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            # Serve para que os clientes tenham níveis (level) de acesso na plataforma
+            # Já que eu acrescentei esse campo devo ir nas models e acrescentar o campo 'level'
+            $table->string('level')->default('user');
             $table->rememberToken();
             $table->timestamps();
         });

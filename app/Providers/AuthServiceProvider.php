@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -21,6 +23,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Aqui é onde define a regra de negócios do nível de acesso dos usuários
+        // Aqui será usado Gate e Can para restringir ou permitir acesso a diferentes
+        // páginas da nossa aplicação.
+        Gate::define('level', function(User $user){
+            return $user->level == 'admin';
+        });
     }
 }
